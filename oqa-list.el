@@ -31,6 +31,11 @@
 (require 'tabulated-list)
 (require 'oqa-instance)
 
+;; `oqa-dispatch' lives in oqa-transient.el, which requires this file;
+;; declare it here to avoid a load cycle while keeping the byte-compiler
+;; quiet.  It is autoloaded, so the `o'/`?' bindings resolve at runtime.
+(declare-function oqa-dispatch "oqa-transient")
+
 (defvar-local oqa--parent-buffer nil
   "Buffer to return to with `oqa-up'.")
 
@@ -48,11 +53,16 @@
     (define-key map (kbd "RET") #'oqa-open)
     (define-key map (kbd "q")   #'quit-window)
     (define-key map (kbd "^")   #'oqa-up)
+    (define-key map (kbd "u")   #'oqa-up)
     (define-key map (kbd "g")   #'oqa-refresh)
     (define-key map (kbd "o")   #'oqa-dispatch)
     (define-key map (kbd "?")   #'oqa-dispatch)
     map)
-  "Keymap shared by all oqa list views.")
+  "Keymap shared by all oqa list views.
+Navigation works directly here — RET drills, `u'/`^' go up, `q'
+buries, `g' refreshes — so the dispatch transient (`o'/`?') is only
+needed for the richer, context-specific actions, never for plain
+navigation.")
 
 (define-derived-mode oqa-list-mode tabulated-list-mode "oqa"
   "Base major mode for oqa list buffers.
@@ -84,14 +94,16 @@ Buffers are read-only; navigation uses \\<oqa-list-mode-map>\\[oqa-open], \
       (funcall oqa--refresh-fn)
     (message "oqa: nothing to refresh")))
 
-(defun oqa--open-view (name parent instance populate)
+(defun oqa--open-view (name parent instance populate &optional mode)
   "Create or reuse buffer NAME as a child of PARENT and populate it.
 INSTANCE is the active instance label to inherit.  POPULATE is a thunk
-run in the new buffer (already in `oqa-list-mode') that sets the table
-format, entries, `oqa--open-fn' and `oqa--refresh-fn'."
+run in the new buffer that sets the table format, entries, `oqa--open-fn'
+and `oqa--refresh-fn'.  MODE is the major mode to enable (a mode derived
+from `oqa-list-mode', e.g. `oqa-jobs-mode' for its own keymap); it
+defaults to `oqa-list-mode'."
   (let ((buf (get-buffer-create name)))
     (pop-to-buffer-same-window buf)
-    (oqa-list-mode)
+    (funcall (or mode #'oqa-list-mode))
     (setq oqa--parent-buffer parent)
     (when instance (setq oqa--instance instance))
     (funcall populate)

@@ -33,12 +33,15 @@
 
 ;;;###autoload (autoload 'oqa-dispatch "oqa-transient" nil t)
 (transient-define-prefix oqa-dispatch ()
-  "Command dispatch for oqa."
+  "Navigation dispatch shared by every oqa view.
+These are also bound directly in the buffer (`u'/`^', RET, `g'), so
+this menu is just a discoverable overview.  The jobs view has its own
+`oqa-jobs-transient' (filters) on `o'/`?'/`f' instead of this one."
   ["Navigate"
-   ("g" "groups (home)" oqa-groups)
    ("j" "open item at point (drill down)" oqa-open)
    ("u" "up / back" oqa-up)
-   ("r" "refresh view" oqa-refresh)])
+   ("g" "refresh view" oqa-refresh)
+   ("H" "groups (home)" oqa-groups)])
 
 (provide 'oqa-transient)
 ;;; oqa-transient.el ends here

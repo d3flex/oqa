@@ -29,10 +29,15 @@
 (require 'oqa-api)
 (require 'oqa-list)
 
+;; See oqa-list.el: `oqa-dispatch' is autoloaded from oqa-transient.el,
+;; which requires this dependency chain; declare it to avoid a cycle.
+(declare-function oqa-dispatch "oqa-transient")
+
 (defvar oqa-job-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "q") #'quit-window)
     (define-key map (kbd "^") #'oqa-up)
+    (define-key map (kbd "u") #'oqa-up)
     (define-key map (kbd "g") #'oqa-refresh)
     (define-key map (kbd "o") #'oqa-dispatch)
     (define-key map (kbd "?") #'oqa-dispatch)

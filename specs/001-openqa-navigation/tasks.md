@@ -89,13 +89,13 @@ combo shows an explicit empty state (quickstart.md Story 2; SC-003).
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T020 [P] [US2] `test/oqa-jobs-filter-test.el`: `transient-args` → query string, multi-value `state`/`result` become repeated params, default `limit=100`, empty-result path distinct from error
+- [X] T020 [P] [US2] `test/oqa-jobs-filter-test.el`: `transient-args` → query string, multi-value `state`/`result` become repeated params, default `limit=100`, empty-result path distinct from error
 
 ### Implementation for User Story 2
 
-- [ ] T021 [US2] In `oqa-jobs.el`, define `oqa-jobs-transient` infixes (`-s`/`-r`/`-a`/`-f`/`-m`/`-t`/`-d`/`-v`/`-n`) and `oqa--jobs-query` that builds the `/api/v1/jobs` query from `(transient-args …)` (depends on T016)
-- [ ] T022 [US2] In `oqa-jobs.el`, render an explicit "no matching jobs" state distinct from a load error (FR-013)
-- [ ] T023 [US2] Add the **Filter** group to `oqa-dispatch` in `oqa-transient.el`, showing active filters (depends on T021)
+- [X] T021 [US2] In `oqa-jobs.el`, define `oqa-jobs-transient` infixes (`-s`/`-r`/`-a`/`-f`/`-m`/`-t`/`-d`/`-v`/`-n`) and `oqa--jobs-query` that builds the `/api/v1/jobs` query from `(transient-args …)` (depends on T016)
+- [X] T022 [US2] In `oqa-jobs.el`, render an explicit "no matching jobs" state distinct from a load error (FR-013)
+- [X] T023 [US2] Add the **Filter** group to `oqa-dispatch` in `oqa-transient.el`, showing active filters (depends on T021)
 
 **Checkpoint**: US1 + US2 both work independently.
 
