@@ -30,6 +30,20 @@
 
 (require 'oqa-api)
 (require 'oqa-list)
+(require 'oqa-log)
+(require 'oqa-job)
+
+(defvar oqa-workers-mode-map
+  (let ((map (make-sparse-keymap)))
+    ;; Navigation is inherited from `oqa-list-mode'; add the log key.
+    (define-key map (kbd "l") #'oqa-worker-log)
+    map)
+  "Keymap for `oqa-workers-mode' (adds the worker-log key to the list keys).")
+
+(define-derived-mode oqa-workers-mode oqa-list-mode "oqa-workers"
+  "Major mode for the oqa workers list and worker-detail views.
+Derives from `oqa-list-mode' (shared navigation) and binds `l' to show
+the worker's log.")
 
 (defvar-local oqa--workers-by-id nil
   "Hash mapping worker id to its worker hash for the current buffer.")
@@ -90,11 +104,12 @@
   (let ((err (gethash "error" w)))
     (concat (format " Worker %s  •  %s" (oqa--worker-identity w)
                     (or (gethash "status" w) "?"))
-            (if err (format "  •  error: %s" err) ""))))
+            (if err (format "  •  error: %s" err) "")
+            "  •  l: log")))
 
 (defun oqa--worker-detail-render (id worker)
   "Render WORKER (id ID) properties into the current buffer."
-  (setq oqa--context (list :worker-id id))
+  (setq oqa--context (list :worker-id id :worker worker))
   (setq oqa--open-fn nil)
   (setq oqa--refresh-fn (lambda () (oqa--worker-detail-render id worker)))
   ;; Free the header line for the worker identity/status (see oqa-jobs.el).
@@ -112,7 +127,8 @@
 PARENT is the buffer to return to; INSTANCE the active instance label."
   (oqa--open-view (format "*oqa: worker %s*" id)
                   parent (or instance (oqa--instance))
-                  (lambda () (oqa--worker-detail-render id worker))))
+                  (lambda () (oqa--worker-detail-render id worker))
+                  #'oqa-workers-mode))
 
 ;;; Workers list -------------------------------------------------------
 
@@ -151,7 +167,53 @@ PARENT is the buffer to return to; INSTANCE the active instance label."
     (if (oqa-error-p data)
         (message "%s" (oqa--render-error data))
       (oqa--open-view "*oqa: workers*" parent (oqa--instance)
-                      (lambda () (oqa--workers-render data))))))
+                      (lambda () (oqa--workers-render data))
+                      #'oqa-workers-mode))))
+
+;;; Worker log (degraded) ----------------------------------------------
+
+(defun oqa--worker-at-point ()
+  "Return the worker hash to act on, from the list row or the detail view."
+  (or (and oqa--workers-by-id
+           (gethash (tabulated-list-get-id) oqa--workers-by-id))
+      (plist-get oqa--context :worker)
+      (user-error "oqa: no worker at point")))
+
+(defun oqa--worker-running-job (w)
+  "Return the id of the job worker W is currently running, or nil.
+The workers endpoint does not always carry this; the fields checked here
+are the ones present when a worker is busy."
+  (or (gethash "jobid" w)
+      (let ((job (gethash "job" w)))
+        (and (hash-table-p job) (gethash "id" job)))))
+
+(defun oqa--worker-log-text (w)
+  "Return the degraded log text for worker W (FR-029).
+No worker-log endpoint is exposed by the OpenQA REST API, so show the
+worker's status and error and explain where the real logs live."
+  (concat
+   (format "Worker %s\n" (oqa--worker-identity w))
+   (format "Status:  %s\n" (or (gethash "status" w) "?"))
+   (let ((e (gethash "error" w)))
+     (if e (format "Error:   %s\n" e) ""))
+   "\n"
+   "No worker-log endpoint is exposed by this OpenQA instance.\n"
+   "Worker logs live on the worker host (journald / /var/log on the\n"
+   "machine running the worker).  Only a running worker's current job\n"
+   "log is retrievable through oqa.\n"))
+
+;;;###autoload
+(defun oqa-worker-log ()
+  "Show the log for the worker at point.
+If the worker is running a job, show that job's log; otherwise degrade to
+the worker's status/error with a clear \"unavailable\" explanation."
+  (interactive)
+  (let* ((w (oqa--worker-at-point))
+         (jobid (oqa--worker-running-job w)))
+    (if jobid
+        (oqa--job-log-id jobid)
+      (oqa--show-log (format "worker %s" (oqa--worker-identity w))
+                     (oqa--worker-log-text w)))))
 
 (provide 'oqa-workers)
 ;;; oqa-workers.el ends here

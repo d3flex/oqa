@@ -29,6 +29,7 @@
 (require 'oqa-api)
 (require 'oqa-list)
 (require 'oqa-actions)
+(require 'oqa-log)
 
 ;; See oqa-list.el: `oqa-dispatch' is autoloaded from oqa-transient.el,
 ;; which requires this dependency chain; declare it to avoid a cycle.
@@ -47,6 +48,7 @@
     (define-key map (kbd "r") #'oqa-restart-job)
     (define-key map (kbd "c") #'oqa-clone-job)
     (define-key map (kbd "T") #'oqa-trigger-iso)
+    (define-key map (kbd "l") #'oqa-job-log)
     ;; Switch the active instance directly.
     (define-key map (kbd "O") #'oqa-use-o3)
     (define-key map (kbd "D") #'oqa-use-osd)
@@ -89,7 +91,7 @@ Modules come from the `testresults' array of a job \"details\" response."
                     (or (gethash "test" job) "")
                     (or (gethash "state" job) "?")
                     (or (gethash "result" job) "-")))
-    (insert (propertize "r restart · c clone · T trigger · u up · g refresh\n\n"
+    (insert (propertize "l log · r restart · c clone · T trigger · u up · g refresh\n\n"
                         'face 'shadow))
     (insert "Settings\n")
     (let ((rows (oqa--job-settings-rows job)))
@@ -127,6 +129,22 @@ PARENT is the buffer to return to; INSTANCE the active instance label."
         (setq oqa--refresh-fn (lambda () (oqa--job-reload id)))
         (oqa--job-render id data)
         buf))))
+
+(defun oqa--job-log-id (id)
+  "Show the autoinst log for job ID, or report it unavailable.
+A 404 (e.g. a job that never started) is reported as \"unavailable\"
+rather than as a load error (FR-029)."
+  (let ((res (oqa--api-get-text (format "/tests/%s/file/autoinst-log.txt" id))))
+    (pcase (oqa--log-outcome res)
+      ('ok (oqa--show-log (format "job %s" id) res))
+      ('unavailable (message "oqa: log unavailable for job %s" id))
+      ('error (message "%s" (oqa--render-error res))))))
+
+;;;###autoload
+(defun oqa-job-log ()
+  "Show the autoinst log for the job at point in a read-only buffer."
+  (interactive)
+  (oqa--job-log-id (oqa--job-id-at-point)))
 
 (provide 'oqa-job)
 ;;; oqa-job.el ends here

@@ -175,13 +175,13 @@ erroring (quickstart.md Story 6; SC-008).
 
 ### Tests for User Story 6 ⚠️
 
-- [ ] T036 [P] [US6] `test/oqa-log-test.el`: job-log parse from `autoinst-log.txt` fixture; 404/absent path yields an "unavailable" result, not an error
+- [X] T036 [P] [US6] `test/oqa-log-test.el`: job-log parse from `autoinst-log.txt` fixture; 404/absent path yields an "unavailable" result, not an error
 
 ### Implementation for User Story 6
 
-- [ ] T037 [US6] In `oqa-job.el`, `oqa-job-log`: GET `/tests/<id>/file/autoinst-log.txt` into a read-only buffer; "log unavailable" on 404 (depends on T017)
-- [ ] T038 [US6] In `oqa-workers.el`, `oqa-worker-log`: degrade to status/error (+ running-job log if any) with an "unavailable" message (depends on T034)
-- [ ] T039 [US6] Add `l` (log) on job and on worker to `oqa-dispatch` in `oqa-transient.el` (depends on T037, T038)
+- [X] T037 [US6] In `oqa-job.el`, `oqa-job-log`: GET `/tests/<id>/file/autoinst-log.txt` into a read-only buffer; "log unavailable" on 404 (depends on T017). New `oqa-log.el` holds the shared read-only `oqa-log-mode` + `oqa--log-outcome`; `oqa-api.el` gained `oqa--api-get-text` and a `status` slot on `oqa-error` for 404 detection
+- [X] T038 [US6] In `oqa-workers.el`, `oqa-worker-log`: degrade to status/error (+ running-job log if any) with an "unavailable" message (depends on T034)
+- [X] T039 [US6] Add `l` (log) on job and on worker — bound directly in `oqa-jobs-mode`/`oqa-job-mode` (→`oqa-job-log`) and `oqa-workers-mode` (→`oqa-worker-log`), plus the jobs transient's "On job at point" group, **not** the shared `oqa-dispatch` (groups/builds have no log, per the context-placement principle). Depends on T037, T038
 
 **Checkpoint**: All six stories independently functional.
 

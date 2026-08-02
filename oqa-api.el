@@ -39,8 +39,10 @@
   :group 'oqa)
 
 (cl-defstruct (oqa-error (:constructor oqa--make-error))
-  "A structured failure returned by `oqa--api-get'."
-  message)
+  "A structured failure returned by `oqa--api-get' / `oqa--api-get-text'.
+MESSAGE is a human-readable one-liner.  STATUS is the HTTP status code
+when the failure was an HTTP error (e.g. 404), else nil."
+  message status)
 
 (defun oqa--render-error (err)
   "Return a human-readable one-line message for ERR, an `oqa-error'."
@@ -74,9 +76,12 @@ element (for multi-value OpenQA parameters such as state and result)."
                      :null-object nil
                      :false-object nil))
 
-(defun oqa--api-get (path &optional query)
-  "GET PATH (with optional QUERY alist) from the active instance.
-Return parsed JSON on success or an `oqa-error' on any failure."
+(defun oqa--api-request (path query parse-fn)
+  "GET PATH (with optional QUERY alist) and apply PARSE-FN to the body.
+On a 2xx response, point is moved to the start of the body and PARSE-FN
+is called with the request URL; its return value is the result.  On any
+transport or HTTP failure an `oqa-error' is returned instead (its STATUS
+set to the HTTP status code when known, so callers can detect a 404)."
   (let ((url (oqa--url path query)))
     (condition-case err
         (let ((buf (url-retrieve-synchronously url t t oqa-request-timeout)))
@@ -90,19 +95,38 @@ Return parsed JSON on success or an `oqa-error' on any failure."
                      ((null status)
                       (oqa--make-error :message (format "no HTTP status from %s" url)))
                      ((not (<= 200 status 299))
-                      (oqa--make-error :message (format "HTTP %s from %s" status url)))
+                      (oqa--make-error :message (format "HTTP %s from %s" status url)
+                                       :status status))
                      ((not (re-search-forward "^$" nil t))
                       (oqa--make-error :message (format "malformed response from %s" url)))
                      (t
-                      (condition-case perr
-                          (oqa--parse-json)
-                        (error (oqa--make-error
-                                :message (format "bad JSON from %s: %s"
-                                                 url (error-message-string perr)))))))))
+                      (forward-line 1)
+                      (funcall parse-fn url)))))
               (kill-buffer buf))))
       (error (oqa--make-error
               :message (format "request to %s failed: %s"
                                url (error-message-string err)))))))
+
+(defun oqa--api-get (path &optional query)
+  "GET PATH (with optional QUERY alist) from the active instance.
+Return parsed JSON on success or an `oqa-error' on any failure."
+  (oqa--api-request
+   path query
+   (lambda (url)
+     (condition-case perr
+         (oqa--parse-json)
+       (error (oqa--make-error
+               :message (format "bad JSON from %s: %s"
+                                url (error-message-string perr))))))))
+
+(defun oqa--api-get-text (path &optional query)
+  "GET PATH (with optional QUERY alist) as plain text.
+Return the response body as a string on success or an `oqa-error' on
+failure.  A 404 yields an `oqa-error' whose STATUS is 404, which callers
+render as \"unavailable\" rather than a hard error."
+  (oqa--api-request
+   path query
+   (lambda (_url) (buffer-substring-no-properties (point) (point-max)))))
 
 (provide 'oqa-api)
 ;;; oqa-api.el ends here

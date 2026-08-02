@@ -56,6 +56,7 @@
     (define-key map (kbd "r") #'oqa-restart-job)
     (define-key map (kbd "c") #'oqa-clone-job)
     (define-key map (kbd "T") #'oqa-trigger-iso)
+    (define-key map (kbd "l") #'oqa-job-log)
     map)
   "Keymap for `oqa-jobs-mode' (adds the filter menu to the shared keys).")
 
@@ -325,10 +326,11 @@ single-value infixes accumulate and are applied with RET."
     ("-n" "limit" "--limit=")]]
   ["Apply custom filter"
    ("RET" "reload with the args above" oqa-jobs-apply-filters)]
-  ["On job at point (needs openQA-client + credentials)"
-   ("r" "restart (same settings)" oqa-restart-job)
-   ("c" "clone (custom settings)" oqa-clone-job)
-   ("T" "trigger new build (iso)" oqa-trigger-iso)])
+  ["On job at point"
+   ("l" "log (autoinst-log)" oqa-job-log)
+   ("r" "restart (same settings) — needs openQA-client" oqa-restart-job)
+   ("c" "clone (custom settings) — needs openQA-client" oqa-clone-job)
+   ("T" "trigger new build (iso) — needs openQA-client" oqa-trigger-iso)])
 
 (provide 'oqa-jobs)
 ;;; oqa-jobs.el ends here
