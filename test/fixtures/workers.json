@@ -1,0 +1,216 @@
+{
+ "workers": [
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "midas",
+   "id": 1491,
+   "instance": 8081,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm debug_swap",
+    "CPU_MODELNAME": "AMD Ryzen 7 PRO 5850U with Radeon Graphics",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "45",
+    "JOBTOKEN": "lBhC7yhnCNmT7K1H",
+    "MEM_MAX": "30439",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "qemu_x86_64_midas",
+    "WORKER_TMPDIR": "/tmp/webui.worker-1491.HwAiGBrV"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "7f79bc27aab8",
+   "id": 1580,
+   "instance": 201,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap ibpb_exit_to_user",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "48",
+    "MEM_MAX": "515382",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "64bit-ipmi,64bit-ipmi-large-mem,64bit-ipmi-amd,64bit-ipmi-amd-zen2"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": "graceful disconnect at 2025-09-24T21:04:03",
+   "host": "linux-28d8",
+   "id": 1469,
+   "instance": 1,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d",
+    "CPU_MODELNAME": "AMD Ryzen 7 PRO 8840HS w/ Radeon 780M Graphics",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "45",
+    "JOBTOKEN": "rKfwH0zDpV1A_6r6",
+    "MEM_MAX": "59908",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "qemu_x86_64,qemu_i686,qemu_i586",
+    "WORKER_TMPDIR": "/tmp/webui.worker-1469.BrgO7SUC"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "5b46c35cda2e",
+   "id": 1620,
+   "instance": 201,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap ibpb_exit_to_user",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "48",
+    "MEM_MAX": "515382",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "64bit-ipmi,64bit-ipmi-large-mem,64bit-ipmi-amd,64bit-ipmi-amd-zen2"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "fd37d375a35e",
+   "id": 1744,
+   "instance": 201,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "51",
+    "MEM_MAX": "515366",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "64bit-ipmi,64bit-ipmi-large-mem,64bit-ipmi-amd,64bit-ipmi-amd-zen2"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "a9ad2a76bcb0",
+   "id": 1611,
+   "instance": 201,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap ibpb_exit_to_user",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "48",
+    "MEM_MAX": "515382",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "64bit-ipmi,64bit-ipmi-large-mem,64bit-ipmi-amd,64bit-ipmi-amd-zen2"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "34699f108c5b",
+   "id": 1626,
+   "instance": 201,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap ibpb_exit_to_user",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "48",
+    "MEM_MAX": "515382",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "64bit-ipmi,64bit-ipmi-large-mem,64bit-ipmi-amd,64bit-ipmi-amd-zen2"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": "graceful disconnect at 2026-07-20T06:18:09",
+   "host": "openqaworker24",
+   "id": 1973,
+   "instance": 246,
+   "properties": {
+    "CMD_SRV_URL": "http://localhost:22463/AfPmHrxMaFQjWq2K",
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "56",
+    "JOBTOKEN": "AfPmHrxMaFQjWq2K",
+    "MEM_MAX": "515366",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "openqaworker24,x86_64-v3,qemu_x86_64,qemu_i586,heavyload,vagrant,tap,wsl2,prg,prg2,prg2-j12",
+    "WORKER_HOSTNAME": "openqaworker24",
+    "WORKER_TMPDIR": "/tmp/webui.worker-1973.HMvpJVVT"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": null,
+   "host": "d270144d8b56",
+   "id": 1694,
+   "instance": 201,
+   "properties": {
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap ibpb_exit_to_user",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "49",
+    "MEM_MAX": "515382",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "64bit-ipmi,64bit-ipmi-large-mem,64bit-ipmi-amd,64bit-ipmi-amd-zen2"
+   },
+   "status": "dead",
+   "websocket": 0
+  },
+  {
+   "alive": 0,
+   "connected": 0,
+   "error": "graceful disconnect at 2026-05-19T09:37:50",
+   "host": "openqaworker26",
+   "id": 1066,
+   "instance": 7,
+   "properties": {
+    "CMD_SRV_URL": "http://localhost:20073/oywznti1WgcqmP9t",
+    "CPU_ARCH": "x86_64",
+    "CPU_FLAGS": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin brs arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca debug_swap",
+    "CPU_MODELNAME": "AMD EPYC 7773X 64-Core Processor",
+    "CPU_OPMODE": "32-bit, 64-bit",
+    "ISOTOVIDEO_INTERFACE_VERSION": "55",
+    "JOBTOKEN": "oywznti1WgcqmP9t",
+    "MEM_MAX": "515364",
+    "WEBSOCKET_API_VERSION": "1",
+    "WORKER_CLASS": "openqaworker26,x86_64-v3,qemu_x86_64,qemu_i586,heavyload,vagrant,tap,wsl2,prg,prg2,prg2-j12",
+    "WORKER_HOSTNAME": "openqaworker26",
+    "WORKER_TMPDIR": "/tmp/webui.worker-1066.Haj3pFgu"
+   },
+   "status": "dead",
+   "websocket": 0
+  }
+ ]
+}

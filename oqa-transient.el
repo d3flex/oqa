@@ -1,13 +1,9 @@
-;;; oqa.el --- OpenQA client for Emacs  -*- lexical-binding: t; -*-
+;;; oqa-transient.el --- Transient dispatch for oqa  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Ioannis Bonatakis
 
 ;; Author: Ioannis Bonatakis <ybonatakis@suse.com>
 ;; Keywords: tools
-
-;; Version: 0.1.0
-;; Package-Requires: ((emacs "27.1") (transient "0.3.0") (dash "2.19.1") (s "1.12.0"))
-;; URL: https://github.com/b10n1k/oqa
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,27 +20,25 @@
 
 ;;; Commentary:
 
-;; oqa is a Magit-style OpenQA client: a drill-down stack of read-only
-;; list buffers (groups -> builds -> jobs -> job) with a transient
-;; command menu (`o' or `?').  `M-x oqa' opens the job-groups view of the
-;; active instance (o3 by default; see `oqa-instances').
+;; The context command menu, reachable with `o' or `?' from any view.
+;; For this browse milestone it exposes navigation only; filtering,
+;; job actions, instance switching, workers and logs attach here as
+;; later stories land.
 
 ;;; Code:
 
-(require 'oqa-instance)
-(require 'oqa-api)
+(require 'transient)
 (require 'oqa-list)
-(require 'oqa-job)
-(require 'oqa-jobs)
-(require 'oqa-builds)
 (require 'oqa-groups)
-(require 'oqa-transient)
 
-;;;###autoload
-(defun oqa ()
-  "Open the OpenQA client at the job-groups view of the active instance."
-  (interactive)
-  (oqa-groups))
+;;;###autoload (autoload 'oqa-dispatch "oqa-transient" nil t)
+(transient-define-prefix oqa-dispatch ()
+  "Command dispatch for oqa."
+  ["Navigate"
+   ("g" "groups (home)" oqa-groups)
+   ("j" "open item at point (drill down)" oqa-open)
+   ("u" "up / back" oqa-up)
+   ("r" "refresh view" oqa-refresh)])
 
-(provide 'oqa)
-;;; oqa.el ends here
+(provide 'oqa-transient)
+;;; oqa-transient.el ends here
