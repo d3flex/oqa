@@ -34,5 +34,27 @@
     (should (equal (cdr (assoc "build" q)) "20260731"))
     (should (assoc "limit" q))))
 
+(ert-deftest oqa-jobs-state-result-face-mapping ()
+  (should (eq (oqa--result-face "passed") 'oqa-passed))
+  (should (eq (oqa--result-face "failed") 'oqa-failed))
+  (should (eq (oqa--result-face "softfailed") 'oqa-softfailed))
+  (should (eq (oqa--result-face "skipped") 'oqa-muted))
+  (should (null (oqa--result-face "surprising_new_value")))
+  (should (eq (oqa--state-face "running") 'oqa-running))
+  (should (null (oqa--state-face "done"))))
+
+(ert-deftest oqa-jobs-rows-colorize-result-column ()
+  "The Result column carries the mapped face but keeps its plain text."
+  (let* ((data (oqa-fixture "jobs.json"))
+         (rows (oqa--jobs-rows data)))
+    (dolist (row rows)
+      (let* ((cols (cadr row))
+             (result (aref cols 6))
+             (face (oqa--result-face (substring-no-properties result))))
+        ;; text content is unchanged (equal ignores text properties)
+        (should (stringp result))
+        (when face
+          (should (eq (get-text-property 0 'face result) face)))))))
+
 (provide 'oqa-jobs-test)
 ;;; oqa-jobs-test.el ends here

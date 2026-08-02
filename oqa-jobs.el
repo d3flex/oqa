@@ -36,6 +36,45 @@
   :type 'integer
   :group 'oqa)
 
+(defface oqa-passed '((t :inherit success))
+  "Face for a passed job result." :group 'oqa)
+
+(defface oqa-failed '((t :inherit error))
+  "Face for a failed (or incomplete/timed-out) job result." :group 'oqa)
+
+(defface oqa-softfailed '((t :inherit warning))
+  "Face for a softfailed job result." :group 'oqa)
+
+(defface oqa-running
+  '((((background dark))  :foreground "#61afef")
+    (((background light)) :foreground "#0066cc")
+    (t :inherit link))
+  "Face for a job that is still running or otherwise in progress." :group 'oqa)
+
+(defface oqa-muted '((t :inherit shadow))
+  "Face for inert job states/results (skipped, cancelled, scheduled, none)."
+  :group 'oqa)
+
+(defun oqa--result-face (result)
+  "Return the face for a job RESULT string, or nil for no coloring."
+  (pcase result
+    ("passed" 'oqa-passed)
+    ("softfailed" 'oqa-softfailed)
+    ((or "failed" "incomplete" "timeout_exceeded" "parallel_failed") 'oqa-failed)
+    ((or "skipped" "obsoleted" "none" "user_cancelled" "") 'oqa-muted)
+    (_ nil)))
+
+(defun oqa--state-face (state)
+  "Return the face for a job STATE string, or nil for no coloring."
+  (pcase state
+    ((or "running" "uploading" "setup" "assigned") 'oqa-running)
+    ((or "scheduled" "cancelled") 'oqa-muted)
+    (_ nil)))
+
+(defun oqa--colorize (text face)
+  "Return TEXT propertized with FACE, or TEXT unchanged when FACE is nil."
+  (if face (propertize text 'face face) text))
+
 (defun oqa--job-setting (job key)
   "Return string value of settings KEY in JOB, or an empty string."
   (let ((s (gethash "settings" job)))
@@ -46,7 +85,9 @@
   (let ((jobs (gethash "jobs" data)))
     (mapcar
      (lambda (j)
-       (let ((id (gethash "id" j)))
+       (let ((id (gethash "id" j))
+             (state (format "%s" (or (gethash "state" j) "")))
+             (result (format "%s" (or (gethash "result" j) ""))))
          (list
           id
           (vector (number-to-string id)
@@ -54,8 +95,8 @@
                   (oqa--job-setting j "FLAVOR")
                   (oqa--job-setting j "ARCH")
                   (oqa--job-setting j "MACHINE")
-                  (format "%s" (or (gethash "state" j) ""))
-                  (format "%s" (or (gethash "result" j) ""))))))
+                  (oqa--colorize state (oqa--state-face state))
+                  (oqa--colorize result (oqa--result-face result))))))
      (append (or jobs (vector)) nil))))
 
 (defun oqa--jobs-query (group-id build)

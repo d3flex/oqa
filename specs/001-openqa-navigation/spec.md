@@ -132,6 +132,7 @@ From a job at point (or a worker at point), the user opens that entity's log out
 - **FR-001**: The tool MUST present all job groups of the active instance as the entry view, showing at least group name and parent group.
 - **FR-002**: Users MUST be able to drill from a job group into its builds, each showing version and pass/fail/total/unfinished counts.
 - **FR-003**: Users MUST be able to drill from a build into its jobs, each showing id, test name, flavor, architecture, machine, state, and result.
+- **FR-003a**: In the jobs view, the State and Result columns SHOULD be colour-coded (e.g. passed = green, running = blue, failed = red, softfailed = orange, inert states dimmed) using user-customisable faces; unrecognised values render without colour. Colour is presentation only and never changes the displayed text.
 - **FR-004**: Users MUST be able to open a single job and view its settings (key/value) and its module/step results.
 - **FR-005**: Users MUST be able to navigate back up the hierarchy to the previously viewed level.
 - **FR-006**: The tool MUST provide a command menu, reachable from any view, that presents the navigation targets and actions available in the current context.
