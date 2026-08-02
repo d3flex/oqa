@@ -64,7 +64,7 @@ Prefers the dynamic `oqa--instance-override', then the buffer-local
   "Return the base URL for instance LABEL, or the active instance."
   (let ((label (or label (oqa--instance))))
     (or (cdr (assoc label oqa-instances))
-        (error "oqa: unknown instance %S (see `oqa-instances')" label))))
+        (error "Unknown instance %S (see `oqa-instances')" label))))
 
 ;; `oqa-groups' is the entry view (oqa-groups.el).  It requires oqa-api,
 ;; which requires this file, so we cannot require it back; declare it to
@@ -81,7 +81,7 @@ completion, defaulting to the current instance."
                           (mapcar #'car oqa-instances) nil t
                           nil nil (oqa--instance))))
   (unless (assoc label oqa-instances)
-    (user-error "oqa: unknown instance %S (see `oqa-instances')" label))
+    (user-error "Unknown instance %S (see `oqa-instances')" label))
   (oqa-groups label))
 
 ;;;###autoload

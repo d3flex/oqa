@@ -155,7 +155,7 @@ PARENT is the buffer to return to; INSTANCE the active instance label."
   (let ((w (and oqa--workers-by-id (gethash id oqa--workers-by-id))))
     (if w
         (oqa-worker id w (current-buffer) (oqa--instance))
-      (user-error "oqa: worker %s not found" id))))
+      (user-error "Worker %s not found" id))))
 
 ;;;###autoload
 (defun oqa-workers ()
@@ -177,7 +177,7 @@ PARENT is the buffer to return to; INSTANCE the active instance label."
   (or (and oqa--workers-by-id
            (gethash (tabulated-list-get-id) oqa--workers-by-id))
       (plist-get oqa--context :worker)
-      (user-error "oqa: no worker at point")))
+      (user-error "No worker at point")))
 
 (defun oqa--worker-running-job (w)
   "Return the id of the job worker W is currently running, or nil.

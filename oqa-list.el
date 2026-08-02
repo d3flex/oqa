@@ -86,7 +86,7 @@ Buffers are read-only; navigation uses \\<oqa-list-mode-map>\\[oqa-open], \
   (let ((id (tabulated-list-get-id)))
     (if (and id oqa--open-fn)
         (funcall oqa--open-fn id)
-      (user-error "oqa: nothing to open here"))))
+      (user-error "Nothing to open here"))))
 
 (defun oqa-up ()
   "Return to the parent view, if any."

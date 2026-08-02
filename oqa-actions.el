@@ -46,12 +46,12 @@
 ;;; Guards and helpers -------------------------------------------------
 
 (defun oqa--require-cli (program)
-  "Return PROGRAM if it is on `exec-path', else signal a `user-error'.
+  "Return PROGRAM when `executable-find' locates it, else signal a `user-error'.
 This blocks a mutation before anything is submitted when the required
 command-line tool is not installed (FR-020)."
   (if (executable-find program)
       program
-    (user-error "oqa: %s not found in PATH; install openQA-client to act on jobs"
+    (user-error "%s not found in PATH; install openQA-client to act on jobs"
                 program)))
 
 (defun oqa--confirm (prompt)
@@ -66,7 +66,7 @@ the id kept in `oqa--context'.  Signals a `user-error' when neither is
 available."
   (or (and (derived-mode-p 'tabulated-list-mode) (tabulated-list-get-id))
       (plist-get oqa--context :job-id)
-      (user-error "oqa: no job at point")))
+      (user-error "No job at point")))
 
 (defun oqa--job-settings (id)
   "Fetch job ID from the active instance and return its settings hash.
@@ -218,7 +218,7 @@ with \\<oqa-clone-mode-map>\\[oqa-clone-submit], cancel with \
         (host oqa--clone-host)
         (kvs (oqa--clone-buffer-kvs)))
     (unless (and id host)
-      (user-error "oqa: not an oqa clone buffer"))
+      (user-error "Not an oqa clone buffer"))
     (when (oqa--confirm (format "Clone job %s on %s with %d setting(s)? "
                                 id host (length kvs)))
       (let ((buf (current-buffer)))

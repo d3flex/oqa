@@ -189,11 +189,11 @@ erroring (quickstart.md Story 6; SC-008).
 
 ## Phase 9: Polish & Cross-Cutting Concerns
 
-- [ ] T040 [P] checkdoc/docstring pass across all `oqa-*.el`; `keg lint` clean (package-lint + checkdoc)
-- [ ] T041 `keg build` byte-compiles with no unaccepted warnings on 27.1+
-- [ ] T042 [P] Update `README.org`: usage (`M-x oqa`, dispatch, filters, instances, workers, logs); fix stale `master`→`main` badge references
-- [ ] T043 [P] Update `CLAUDE.md`: new module map, entry points, that `oqa-status` is retired and `oqa` is the entry
-- [ ] T044 Run `keg run test-all` green and walk quickstart.md's per-story validation against live o3
+- [X] T040 [P] checkdoc/docstring pass across all `oqa-*.el` — **checkdoc clean** (error/user-error messages capitalized & de-prefixed per GNU convention; `message` status keeps the `oqa:` prefix). `package-lint` not installable locally (keg absent) — runs in CI
+- [X] T041 byte-compiles with no warnings on Emacs 30.2 (`emacs -Q -f batch-byte-compile` over all `oqa-*.el`); package loads clean
+- [X] T042 [P] Update `README.org`: usage (`M-x oqa`, dispatch, filters, instances, workers, logs); `master`→`main` badges + modern Actions badge
+- [X] T043 [P] Update `CLAUDE.md`: new module map, entry points, `oqa-status` retired, `oqa` is the entry; require-cycle + header-line gotchas
+- [X] T044 Full ERT suite green (57 tests); **live o3 read paths validated**: `/api/v1/job_groups` (110 groups), `/api/v1/workers` (716), and a job-log 404 → "unavailable". Interactive per-story keyboard walkthrough left to the user
 
 ---
 

@@ -1,24 +1,75 @@
 [[https://github.com/b10n1k/oqa][https://img.shields.io/github/tag/b10n1k/oqa.svg?style=flat-square]]
 [[file:LICENSE][https://img.shields.io/github/license/b10n1k/oqa.svg?style=flat-square]]
-[[https://codecov.io/gh/b10n1k/oqa?branch=master][https://img.shields.io/codecov/c/github/b10n1k/oqa.svg?style=flat-square]]
-[[https://github.com/b10n1k/oqa/actions][https://img.shields.io/github/workflow/status/b10n1k/oqa/test/master.svg?style=flat-square]]
-* oqa: OpenQA Framework
+[[https://codecov.io/gh/b10n1k/oqa?branch=main][https://img.shields.io/codecov/c/github/b10n1k/oqa.svg?style=flat-square]]
+[[https://github.com/b10n1k/oqa/actions/workflows/test.yml][https://github.com/b10n1k/oqa/actions/workflows/test.yml/badge.svg]]
+* oqa: an OpenQA client for Emacs
 
-oqa.el provides a mode which user can review and take actions over
-[[http://open.qa/][OpenQA]] from one place in replace of the OpenQA UI for increased productivity
-of daily tasks.
+=oqa= is a Magit-style front end for [[http://open.qa/][OpenQA]].  It models OpenQA as a
+drill-down hierarchy — a stack of read-only =tabulated-list= buffers
+(groups → builds → jobs → job) — each with a context-sensitive
+[[https://github.com/magit/transient][transient]] menu that acts on the entry at point.  The goal is to run
+daily review tasks from inside Emacs instead of the OpenQA web UI.
 
-* How to Use?
+Reads use the public OpenQA REST API with *no credentials*.  Only the
+state-changing actions (restart / clone / trigger) shell out to your
+installed =openqa-cli= / =openqa-clone-job=, which use the credentials in
+=~/.config/openqa/client.conf=.
 
-oqa integrates [[https://github.com/magit/transient][transient]] and connects it with its various operations. The
-framework gives a quick menu to perform various actions.
+* Getting started
 
-To simple run the oqa-mode press `C-M-z`. This by default will show the
-*oqa_results* buffer with some results. The results are coming from the API
-call and shows the DISTRI, and the overall test results
+=M-x oqa= opens the job-groups view of the active instance (=o3=,
+=openqa.opensuse.org=, by default).  From there:
 
-Once at the *oqa_results* pressing `o` with pop up the options to select
-actions
+- =RET= drills into the entry at point (group → builds → jobs → job).
+- =u= / =^= go back up, =q= buries the view, =g= refreshes.
+- =o= / =?= open the context menu (transient) for the current view.
+
+No configuration is required to browse.
+
+* What you can do
+
+** Browse (no credentials)
+Groups → builds → jobs → a single job's settings and module results.
+
+** Filter jobs
+In the jobs view, =o= opens the filter menu.  One-key presets reload the
+list immediately — =R= running, =F= failed, =S= failed+softfailed,
+=P= passed, =x= clear.  For anything else, the =-s= / =-r= (multi-value
+state/result) and =-a= / =-f= / =-m= / =-t= / =-d= / =-v= / =-n= infixes
+build a custom query applied with =RET=.  The active filters are shown in
+the header line.
+
+** Act on a job (needs =openQA-client= + credentials)
+With a job at point: =r= restart with the same settings, =c= clone into
+an editable =KEY=value= buffer (=C-c C-c= submits, =C-c C-k= cancels), or
+=T= trigger a new build (=isos=).  Each confirms first and reports the
+CLI's outcome; if the CLI is missing the action is blocked with a message
+and nothing is submitted.
+
+** Switch instances
+=o3= is the default.  =O= / =D= switch to =o3= / =osd=, =i= chooses any
+instance configured in =oqa-instances=.  Every view and action then
+targets the active instance.
+
+** Workers
+=w= opens the workers list (host:instance / status / worker class);
+=RET= shows a worker's properties.
+
+** Logs
+=l= shows a job's =autoinst-log= in a read-only buffer (a not-yet-started
+job reports "log unavailable" rather than erroring).  On a worker, =l=
+shows its running job's log if any, otherwise its status/error with a
+note that OpenQA exposes no worker-log endpoint.
+
+* Configuration
+
+- =oqa-instances= — alist of instance label → base URL (defaults: =o3=,
+  =osd=).
+- =oqa-default-instance= — the label used when a buffer has none (=o3=).
+- =oqa-jobs-limit= — default job page size (100).
+- =oqa-request-timeout= — HTTP timeout in seconds (30).
+- =oqa-cli-program= / =oqa-clone-program= — the external tools used for
+  mutations (=openqa-cli= / =openqa-clone-job=).
 
 * License
-  This package is licensed by GPLv3. See [[file:LICENSE][LICENSE]].
+This package is licensed under GPLv3.  See [[file:LICENSE][LICENSE]].

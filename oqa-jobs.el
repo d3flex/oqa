@@ -249,7 +249,7 @@ a group id and build)."
   (let ((group-id (plist-get oqa--context :group-id))
         (build (plist-get oqa--context :build)))
     (unless (and group-id build)
-      (user-error "oqa: not in a jobs view"))
+      (user-error "Not in a jobs view"))
     (oqa--jobs-reload group-id build args)))
 
 (defun oqa-jobs-apply-filters (&optional args)
