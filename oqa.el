@@ -34,6 +34,7 @@
 (require 'oqa-instance)
 (require 'oqa-api)
 (require 'oqa-list)
+(require 'oqa-actions)
 (require 'oqa-job)
 (require 'oqa-jobs)
 (require 'oqa-builds)

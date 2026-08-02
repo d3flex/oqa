@@ -111,15 +111,15 @@ value; missing CLI/creds blocks with a message (quickstart.md Story 3; SC-004/00
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T024 [P] [US3] `test/oqa-actions-test.el`: `openqa-cli`/`openqa-clone-job` argument construction for restart/clone/iso; `executable-find` guard blocks and submits nothing when the CLI is absent
+- [X] T024 [P] [US3] `test/oqa-actions-test.el`: `openqa-cli`/`openqa-clone-job` argument construction for restart/clone/iso; `executable-find` guard blocks and submits nothing when the CLI is absent
 
 ### Implementation for User Story 3
 
-- [ ] T025 [P] [US3] Create `oqa-actions.el`: `oqa--require-cli` (`executable-find`) guard and `oqa--confirm` helper; `(provide 'oqa-actions)`
-- [ ] T026 [US3] In `oqa-actions.el`, `oqa-restart-job` → `openqa-cli api --host <HOST> -X POST jobs/<id>/restart`, report outcome (depends on T025)
-- [ ] T027 [US3] In `oqa-actions.el`, `oqa-clone-job`: `KEY=value` edit buffer (`oqa-clone-mode`, `C-c C-c` submit / `C-c C-k` cancel) prefilled from the job's `settings`, submit via `openqa-clone-job` (depends on T025)
-- [ ] T028 [US3] In `oqa-actions.el`, `oqa-trigger-iso`: read DISTRI/VERSION/FLAVOR/ARCH/BUILD (prefill from job at point), confirm, POST `isos` (depends on T025)
-- [ ] T029 [US3] Add the **On job at point** group (`r`/`c`/`T`) to `oqa-dispatch` in `oqa-transient.el` (depends on T026–T028)
+- [X] T025 [P] [US3] Create `oqa-actions.el`: `oqa--require-cli` (`executable-find`) guard and `oqa--confirm` helper; `(provide 'oqa-actions)`
+- [X] T026 [US3] In `oqa-actions.el`, `oqa-restart-job` → `openqa-cli api --host <HOST> -X POST jobs/<id>/restart`, report outcome (depends on T025)
+- [X] T027 [US3] In `oqa-actions.el`, `oqa-clone-job`: `KEY=value` edit buffer (`oqa-clone-mode`, `C-c C-c` submit / `C-c C-k` cancel) prefilled from the job's `settings`, submit via `openqa-clone-job` (depends on T025)
+- [X] T028 [US3] In `oqa-actions.el`, `oqa-trigger-iso`: read DISTRI/VERSION/FLAVOR/ARCH/BUILD (prefill from job at point), confirm, POST `isos` (depends on T025)
+- [X] T029 [US3] Add the **On job at point** group (`r`/`c`/`T`) — placed in `oqa-jobs-transient` and bound directly in `oqa-jobs-mode`/`oqa-job-mode`, **not** the shared `oqa-dispatch` (per the US2 UX rework: context actions belong where a job is at point, not in the menu shared by groups/builds). Depends on T026–T028
 
 **Checkpoint**: US1–US3 functional; reads still credential-free, only actions touch the CLIs.
 

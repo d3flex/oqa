@@ -36,6 +36,7 @@
 (require 'oqa-api)
 (require 'oqa-list)
 (require 'oqa-job)
+(require 'oqa-actions)
 
 (defcustom oqa-jobs-limit 100
   "Default maximum number of jobs fetched for a build."
@@ -51,6 +52,10 @@
     (define-key map (kbd "?") #'oqa-jobs-transient)
     (define-key map (kbd "f") #'oqa-jobs-transient)
     (define-key map (kbd "x") #'oqa-jobs-clear-filters)
+    ;; Act on the job at point (credentialed, via the external CLIs).
+    (define-key map (kbd "r") #'oqa-restart-job)
+    (define-key map (kbd "c") #'oqa-clone-job)
+    (define-key map (kbd "T") #'oqa-trigger-iso)
     map)
   "Keymap for `oqa-jobs-mode' (adds the filter menu to the shared keys).")
 
@@ -315,7 +320,11 @@ single-value infixes accumulate and are applied with RET."
     ("-v" "version" "--version=")
     ("-n" "limit" "--limit=")]]
   ["Apply custom filter"
-   ("RET" "reload with the args above" oqa-jobs-apply-filters)])
+   ("RET" "reload with the args above" oqa-jobs-apply-filters)]
+  ["On job at point (needs openQA-client + credentials)"
+   ("r" "restart (same settings)" oqa-restart-job)
+   ("c" "clone (custom settings)" oqa-clone-job)
+   ("T" "trigger new build (iso)" oqa-trigger-iso)])
 
 (provide 'oqa-jobs)
 ;;; oqa-jobs.el ends here

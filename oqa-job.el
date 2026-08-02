@@ -28,6 +28,7 @@
 
 (require 'oqa-api)
 (require 'oqa-list)
+(require 'oqa-actions)
 
 ;; See oqa-list.el: `oqa-dispatch' is autoloaded from oqa-transient.el,
 ;; which requires this dependency chain; declare it to avoid a cycle.
@@ -41,6 +42,10 @@
     (define-key map (kbd "g") #'oqa-refresh)
     (define-key map (kbd "o") #'oqa-dispatch)
     (define-key map (kbd "?") #'oqa-dispatch)
+    ;; Act on this job (credentialed, via the external CLIs).
+    (define-key map (kbd "r") #'oqa-restart-job)
+    (define-key map (kbd "c") #'oqa-clone-job)
+    (define-key map (kbd "T") #'oqa-trigger-iso)
     map)
   "Keymap for `oqa-job-mode'.")
 
@@ -73,11 +78,13 @@ Modules come from the `testresults' array of a job \"details\" response."
   (let ((job (oqa--job-unwrap data))
         (inhibit-read-only t))
     (erase-buffer)
-    (insert (format "Job %s: %s   [%s/%s]\n\n"
+    (insert (format "Job %s: %s   [%s/%s]\n"
                     id
                     (or (gethash "test" job) "")
                     (or (gethash "state" job) "?")
                     (or (gethash "result" job) "-")))
+    (insert (propertize "r restart · c clone · T trigger · u up · g refresh\n\n"
+                        'face 'shadow))
     (insert "Settings\n")
     (let ((rows (oqa--job-settings-rows job)))
       (if rows
@@ -110,6 +117,7 @@ PARENT is the buffer to return to; INSTANCE the active instance label."
         (oqa-job-mode)
         (setq oqa--parent-buffer parent)
         (when instance (setq oqa--instance instance))
+        (setq oqa--context (list :job-id id))
         (setq oqa--refresh-fn (lambda () (oqa--job-reload id)))
         (oqa--job-render id data)
         buf))))
