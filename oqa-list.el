@@ -57,6 +57,10 @@
     (define-key map (kbd "g")   #'oqa-refresh)
     (define-key map (kbd "o")   #'oqa-dispatch)
     (define-key map (kbd "?")   #'oqa-dispatch)
+    ;; Switch the active instance directly from any list view.
+    (define-key map (kbd "O")   #'oqa-use-o3)
+    (define-key map (kbd "D")   #'oqa-use-osd)
+    (define-key map (kbd "i")   #'oqa-switch-instance)
     map)
   "Keymap shared by all oqa list views.
 Navigation works directly here — RET drills, `u'/`^' go up, `q'

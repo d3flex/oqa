@@ -134,12 +134,12 @@ against osd (quickstart.md Story 4; SC-005).
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T030 [P] [US4] `test/oqa-instance-test.el`: default active instance is o3; switching changes the host `oqa--url` produces; views read the active host
+- [X] T030 [P] [US4] `test/oqa-instance-test.el`: default active instance is o3; switching changes the host `oqa--url` produces; views read the active host
 
 ### Implementation for User Story 4
 
-- [ ] T031 [US4] In `oqa-instance.el`, add `oqa-switch-instance` (choose from `oqa-instances`), `oqa-use-o3`/`oqa-use-osd`, and reload the entry (groups) view after switching (depends on T005, T014)
-- [ ] T032 [US4] Add the **Instance** group (`O`/`D`/`i`) to `oqa-dispatch` in `oqa-transient.el` (depends on T031)
+- [X] T031 [US4] In `oqa-instance.el`, add `oqa-switch-instance` (choose from `oqa-instances`), `oqa-use-o3`/`oqa-use-osd`, and reload the entry (groups) view after switching (depends on T005, T014)
+- [X] T032 [US4] Add the **Instance** group (`O`/`D`/`i`) to `oqa-dispatch` in `oqa-transient.el` — also bound directly in `oqa-list-mode`/`oqa-job-mode` for buffer-direct switching (depends on T031)
 
 **Checkpoint**: Multi-instance switching works within a session.
 

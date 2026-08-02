@@ -82,10 +82,14 @@ PARENTS is a hash-table id->name used to render the parent column."
   (oqa-builds id (current-buffer) (oqa--instance)))
 
 ;;;###autoload
-(defun oqa-groups ()
-  "Open the job-groups view for the active instance."
+(defun oqa-groups (&optional instance)
+  "Open the job-groups view for the active instance.
+With INSTANCE (a label from `oqa-instances') switch to that instance:
+the groups are fetched from its host and the new buffer adopts it as its
+active instance (FR-021)."
   (interactive)
-  (let ((res (oqa--groups-fetch)))
+  (let* ((oqa--instance-override (or instance oqa--instance-override))
+         (res (oqa--groups-fetch)))
     (if (oqa-error-p res)
         (message "%s" (oqa--render-error res))
       (let ((groups (car res))

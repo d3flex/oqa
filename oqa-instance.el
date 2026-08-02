@@ -48,16 +48,53 @@
 (defvar-local oqa--instance nil
   "Active instance label for the current oqa buffer.")
 
+(defvar oqa--instance-override nil
+  "When non-nil, the instance label to use regardless of buffer-local state.
+Let-bound while fetching for a view that does not exist yet — e.g. an
+instance switch, where the fetch must target the chosen host before its
+buffer (and its buffer-local `oqa--instance') exists.")
+
 (defun oqa--instance ()
-  "Return the active instance label for the current buffer.
-Falls back to `oqa-default-instance' when none is set."
-  (or oqa--instance oqa-default-instance))
+  "Return the active instance label.
+Prefers the dynamic `oqa--instance-override', then the buffer-local
+`oqa--instance', then `oqa-default-instance'."
+  (or oqa--instance-override oqa--instance oqa-default-instance))
 
 (defun oqa--host (&optional label)
   "Return the base URL for instance LABEL, or the active instance."
   (let ((label (or label (oqa--instance))))
     (or (cdr (assoc label oqa-instances))
         (error "oqa: unknown instance %S (see `oqa-instances')" label))))
+
+;; `oqa-groups' is the entry view (oqa-groups.el).  It requires oqa-api,
+;; which requires this file, so we cannot require it back; declare it to
+;; keep the byte-compiler quiet — it is loaded by the time a user switches.
+(declare-function oqa-groups "oqa-groups")
+
+;;;###autoload
+(defun oqa-switch-instance (label)
+  "Switch the active OpenQA instance to LABEL and open its groups view.
+LABEL must be a key of `oqa-instances'.  Interactively it is chosen with
+completion, defaulting to the current instance."
+  (interactive
+   (list (completing-read "OpenQA instance: "
+                          (mapcar #'car oqa-instances) nil t
+                          nil nil (oqa--instance))))
+  (unless (assoc label oqa-instances)
+    (user-error "oqa: unknown instance %S (see `oqa-instances')" label))
+  (oqa-groups label))
+
+;;;###autoload
+(defun oqa-use-o3 ()
+  "Switch the active instance to o3 (openqa.opensuse.org)."
+  (interactive)
+  (oqa-switch-instance "o3"))
+
+;;;###autoload
+(defun oqa-use-osd ()
+  "Switch the active instance to osd (openqa.suse.de)."
+  (interactive)
+  (oqa-switch-instance "osd"))
 
 (provide 'oqa-instance)
 ;;; oqa-instance.el ends here

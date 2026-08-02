@@ -46,6 +46,10 @@
     (define-key map (kbd "r") #'oqa-restart-job)
     (define-key map (kbd "c") #'oqa-clone-job)
     (define-key map (kbd "T") #'oqa-trigger-iso)
+    ;; Switch the active instance directly.
+    (define-key map (kbd "O") #'oqa-use-o3)
+    (define-key map (kbd "D") #'oqa-use-osd)
+    (define-key map (kbd "i") #'oqa-switch-instance)
     map)
   "Keymap for `oqa-job-mode'.")
 

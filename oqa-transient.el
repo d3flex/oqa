@@ -41,7 +41,11 @@ this menu is just a discoverable overview.  The jobs view has its own
    ("j" "open item at point (drill down)" oqa-open)
    ("u" "up / back" oqa-up)
    ("g" "refresh view" oqa-refresh)
-   ("H" "groups (home)" oqa-groups)])
+   ("H" "groups (home)" oqa-groups)]
+  ["Instance"
+   ("O" "o3  (openqa.opensuse.org)" oqa-use-o3)
+   ("D" "osd (openqa.suse.de)" oqa-use-osd)
+   ("i" "choose instance…" oqa-switch-instance)])
 
 (provide 'oqa-transient)
 ;;; oqa-transient.el ends here
