@@ -11,6 +11,7 @@
 ;;; Code:
 
 (require 'ert)
+(require 'oqa-fixture)
 (require 'oqa-jobs)
 
 (ert-deftest oqa-jobs-filter-single-value-arg->query ()
@@ -88,6 +89,15 @@ filtered empty message differs from both the unfiltered one and an error."
                           (oqa--jobs-header "20260731" nil)))
   (should (string-match-p "state=running"
                           (oqa--jobs-header "20260731" '(("--state=" "running"))))))
+
+(ert-deftest oqa-jobs-filter-header-survives-init-header ()
+  "The filter header line is not clobbered by `tabulated-list-init-header'."
+  (with-temp-buffer
+    (oqa-jobs-mode)
+    (oqa--jobs-render 1 "20260731" (oqa-fixture "jobs.json")
+                      '(("--state=" "running")))
+    (should (stringp header-line-format))
+    (should (string-match-p "state=running" header-line-format))))
 
 (ert-deftest oqa-jobs-nav-keys-bound-in-buffer ()
   "Up navigation is bound directly in the shared list keymap (both `u'

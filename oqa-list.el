@@ -35,6 +35,8 @@
 ;; declare it here to avoid a load cycle while keeping the byte-compiler
 ;; quiet.  It is autoloaded, so the `o'/`?' bindings resolve at runtime.
 (declare-function oqa-dispatch "oqa-transient")
+;; `oqa-workers' likewise requires this file; declared for the `w' binding.
+(declare-function oqa-workers "oqa-workers")
 
 (defvar-local oqa--parent-buffer nil
   "Buffer to return to with `oqa-up'.")
@@ -61,6 +63,8 @@
     (define-key map (kbd "O")   #'oqa-use-o3)
     (define-key map (kbd "D")   #'oqa-use-osd)
     (define-key map (kbd "i")   #'oqa-switch-instance)
+    ;; Jump to the workers view from anywhere.
+    (define-key map (kbd "w")   #'oqa-workers)
     map)
   "Keymap shared by all oqa list views.
 Navigation works directly here — RET drills, `u'/`^' go up, `q'

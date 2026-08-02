@@ -154,12 +154,12 @@ Story 5; SC-007). Independent of US1's job path — only needs Foundational.
 
 ### Tests for User Story 5 ⚠️
 
-- [ ] T033 [P] [US5] `test/oqa-workers-test.el`: worker rows (`host:instance` + status) from `workers.json` fixture; worker `properties` rendered as settings
+- [X] T033 [P] [US5] `test/oqa-workers-test.el`: worker rows (`host:instance` + status) from `workers.json` fixture; worker `properties` rendered as settings
 
 ### Implementation for User Story 5
 
-- [ ] T034 [P] [US5] Create `oqa-workers.el`: workers view (GET `/api/v1/workers`, render Identity/Status/Class, `RET`→worker properties); `(provide 'oqa-workers)` (depends on Foundational only)
-- [ ] T035 [US5] Add `w` (workers) and worker-`RET` to `oqa-dispatch` in `oqa-transient.el` (depends on T034)
+- [X] T034 [P] [US5] Create `oqa-workers.el`: workers view (GET `/api/v1/workers`, render Identity/Status/Class, `RET`→worker properties); `(provide 'oqa-workers)` (depends on Foundational only)
+- [X] T035 [US5] Add `w` (workers) and worker-`RET` to `oqa-dispatch` in `oqa-transient.el` — `w` also bound directly in `oqa-list-mode`/`oqa-job-mode`; worker `RET` is the list view's `oqa-open` (depends on T034)
 
 **Checkpoint**: Workers surface available; can be built in parallel with US1.
 

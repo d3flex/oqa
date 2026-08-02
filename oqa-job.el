@@ -33,6 +33,7 @@
 ;; See oqa-list.el: `oqa-dispatch' is autoloaded from oqa-transient.el,
 ;; which requires this dependency chain; declare it to avoid a cycle.
 (declare-function oqa-dispatch "oqa-transient")
+(declare-function oqa-workers "oqa-workers")
 
 (defvar oqa-job-mode-map
   (let ((map (make-sparse-keymap)))
@@ -50,6 +51,7 @@
     (define-key map (kbd "O") #'oqa-use-o3)
     (define-key map (kbd "D") #'oqa-use-osd)
     (define-key map (kbd "i") #'oqa-switch-instance)
+    (define-key map (kbd "w") #'oqa-workers)
     map)
   "Keymap for `oqa-job-mode'.")
 

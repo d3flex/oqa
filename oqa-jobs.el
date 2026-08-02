@@ -199,6 +199,10 @@ the header line, and selects the wording of the empty state."
   (setq oqa--context (list :group-id group-id :build build :args args))
   (setq oqa--open-fn #'oqa--jobs-open)
   (setq oqa--refresh-fn (lambda () (oqa--jobs-reload group-id build args)))
+  ;; Keep the column header in the buffer so the header line is free to
+  ;; show the active filters (otherwise `tabulated-list-init-header'
+  ;; overwrites `header-line-format').
+  (setq tabulated-list-use-header-line nil)
   (setq header-line-format (oqa--jobs-header build args))
   (setq tabulated-list-format
         [("Id" 9 t) ("Test" 38 t) ("Flavor" 16 t) ("Arch" 9 t)

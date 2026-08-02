@@ -39,6 +39,7 @@
 (require 'oqa-jobs)
 (require 'oqa-builds)
 (require 'oqa-groups)
+(require 'oqa-workers)
 (require 'oqa-transient)
 
 ;;;###autoload
