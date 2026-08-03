@@ -31,7 +31,7 @@
   "OpenQA client for Emacs."
   :group 'tools
   :prefix "oqa-"
-  :link '(url-link "https://github.com/b10n1k/oqa"))
+  :link '(url-link "https://github.com/d3flex/oqa"))
 
 (defcustom oqa-instances
   '(("o3" . "https://openqa.opensuse.org")

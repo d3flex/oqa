@@ -1,7 +1,7 @@
-[[https://github.com/b10n1k/oqa][https://img.shields.io/github/tag/b10n1k/oqa.svg?style=flat-square]]
-[[file:LICENSE][https://img.shields.io/github/license/b10n1k/oqa.svg?style=flat-square]]
-[[https://codecov.io/gh/b10n1k/oqa?branch=main][https://img.shields.io/codecov/c/github/b10n1k/oqa.svg?style=flat-square]]
-[[https://github.com/b10n1k/oqa/actions/workflows/test.yml][https://github.com/b10n1k/oqa/actions/workflows/test.yml/badge.svg]]
+[[https://github.com/d3flex/oqa][https://img.shields.io/github/tag/d3flex/oqa.svg?style=flat-square]]
+[[file:LICENSE][https://img.shields.io/github/license/d3flex/oqa.svg?style=flat-square]]
+[[https://codecov.io/gh/d3flex/oqa?branch=main][https://img.shields.io/codecov/c/github/d3flex/oqa.svg?style=flat-square]]
+[[https://github.com/d3flex/oqa/actions/workflows/test.yml][https://github.com/d3flex/oqa/actions/workflows/test.yml/badge.svg]]
 * oqa: an OpenQA client for Emacs
 
 =oqa= is a Magit-style front end for [[http://open.qa/][OpenQA]].  It models OpenQA as a

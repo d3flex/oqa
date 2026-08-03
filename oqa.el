@@ -7,7 +7,7 @@
 
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "27.1") (transient "0.3.0") (dash "2.19.1") (s "1.12.0"))
-;; URL: https://github.com/b10n1k/oqa
+;; URL: https://github.com/d3flex/oqa
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by

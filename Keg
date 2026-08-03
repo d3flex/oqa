@@ -1,7 +1,7 @@
 (source gnu nongnu melpa)
 
 (package (oqa
-          (recipe . (:fetcher github :repo "b10n1k/oqa"))))
+          (recipe . (:fetcher github :repo "d3flex/oqa"))))
 
 (dev-dependency undercover)
 
