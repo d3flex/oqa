@@ -24,7 +24,13 @@ jobs:
       - uses: purcell/setup-emacs@master
         with:
           version: ${{ matrix.emacs_version }}
-      - uses: conao3/setup-keg@master
+      # conao3/setup-keg is a node12 action; node12 is gone from the runners
+      # and has no arm64 macOS build, so it dies with spawn ENOEXEC. Install
+      # Keg from upstream directly instead.
+      - name: Install Keg
+        run: |
+          git clone --depth 1 https://github.com/conao3/keg.el.git "$HOME/keg"
+          echo "$HOME/keg/bin" >> "$GITHUB_PATH"
 
       - run: keg install
       - run: keg run test-all
@@ -40,5 +46,8 @@ jobs:
       - uses: purcell/setup-emacs@master
         with:
           version: '28.1'
-      - uses: conao3/setup-keg@master
+      - name: Install Keg
+        run: |
+          git clone --depth 1 https://github.com/conao3/keg.el.git "$HOME/keg"
+          echo "$HOME/keg/bin" >> "$GITHUB_PATH"
       - run: keg lint
