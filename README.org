@@ -17,7 +17,9 @@ installed =openqa-cli= / =openqa-clone-job=, which use the credentials in
 
 * Requirements
 
-- Emacs 28.1 or newer
+- Emacs 28.1 or newer.  Emacs 29.1 specifically has an upstream
+  =package.el= bug that breaks upgrading the built-in =seq= (a =transient=
+  dependency) with "Cannot open load file: seq-25"; use 29.2 or newer.
 - [[https://github.com/magit/transient][transient]], [[https://github.com/magnars/dash.el][dash]], [[https://github.com/magnars/s.el][s]]
 - Optional, only for restart / clone / trigger: =openqa-cli= and
   =openqa-clone-job= from the openQA client package, configured in
