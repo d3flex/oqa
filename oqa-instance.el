@@ -3,6 +3,7 @@
 ;; Copyright (C) 2022  Ioannis Bonatakis
 
 ;; Author: Ioannis Bonatakis <ybonatakis@suse.com>
+;; Assisted-by: Claude:claude-opus-5
 ;; Keywords: tools
 
 ;; This program is free software; you can redistribute it and/or modify
