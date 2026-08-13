@@ -1,4 +1,4 @@
-;;; oqa.el --- OpenQA client for Emacs  -*- lexical-binding: t; -*-
+;;; oqa.el --- Drill-down client for OpenQA test results  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Ioannis Bonatakis
 
