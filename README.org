@@ -17,7 +17,7 @@ installed =openqa-cli= / =openqa-clone-job=, which use the credentials in
 
 * Requirements
 
-- Emacs 27.1 or newer
+- Emacs 28.1 or newer
 - [[https://github.com/magit/transient][transient]], [[https://github.com/magnars/dash.el][dash]], [[https://github.com/magnars/s.el][s]]
 - Optional, only for restart / clone / trigger: =openqa-cli= and
   =openqa-clone-job= from the openQA client package, configured in
