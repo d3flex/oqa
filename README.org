@@ -15,7 +15,32 @@ state-changing actions (restart / clone / trigger) shell out to your
 installed =openqa-cli= / =openqa-clone-job=, which use the credentials in
 =~/.config/openqa/client.conf=.
 
-* Getting started
+* Requirements
+
+- Emacs 27.1 or newer
+- [[https://github.com/magit/transient][transient]], [[https://github.com/magnars/dash.el][dash]], [[https://github.com/magnars/s.el][s]]
+- Optional, only for restart / clone / trigger: =openqa-cli= and
+  =openqa-clone-job= from the openQA client package, configured in
+  =~/.config/openqa/client.conf=
+
+* Installation
+
+Clone the repository and load it:
+
+#+begin_src emacs-lisp
+(add-to-list 'load-path "/path/to/oqa")
+(require 'oqa)
+#+end_src
+
+Or with =use-package= and a local checkout:
+
+#+begin_src emacs-lisp
+(use-package oqa
+  :load-path "/path/to/oqa"
+  :commands (oqa))
+#+end_src
+
+* Usage
 
 =M-x oqa= opens the job-groups view of the active instance (=o3=,
 =openqa.opensuse.org=, by default).  From there:
