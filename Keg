@@ -10,7 +10,7 @@
   (let ((test-files (mapcar (lambda (file) (file-relative-name file "."))
                             (directory-files "test" t "\\.el$"))))
     (keg-shell
-     `("keg" "emacs" "--batch" "-Q" "-L" "."
+     `("keg" "emacs" "--batch" "-Q" "-L" "." "-L" "test"
        ,@(mapcar (apply-partially #'concat "--load=") test-files)
        "-f" "ert-run-tests-batch-and-exit"))))
  (test-all

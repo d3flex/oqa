@@ -1,0 +1,32 @@
+[2026-08-01T11:34:45.114897Z] [info] +++ setup notes +++
+[2026-08-01T11:34:45.115065Z] [info] Running on openqaworker21:33 (Linux 6.12.0-160000.36-default #1 SMP PREEMPT_DYNAMIC Tue Jul 14 08:31:14 UTC 2026 (352acd0) x86_64)
+[2026-08-01T11:34:45.118806Z] [debug] Found ASSET_256, caching agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso.sha256
+[2026-08-01T11:34:45.120757Z] [info] Downloading agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso.sha256, request #890316 sent to Cache Service
+[2026-08-01T11:34:55.238456Z] [info] Download of agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso.sha256 processed:
+[info] [#890316] Cache size of "/var/lib/openqa/cache" is 398 GiB, with limit 400 GiB
+[info] [#890316] Downloading "agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso.sha256" from "https://openqa.opensuse.org/tests/6137466/asset/other/agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso.sha256"
+[info] [#890316] Content of "/var/lib/openqa/cache/openqa.opensuse.org/agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso.sha256" has not changed, updating last use
+
+[2026-08-01T11:34:55.240122Z] [debug] Found HDD_1, caching opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G.qcow2
+[2026-08-01T11:34:55.242031Z] [info] Downloading opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G.qcow2, request #890318 sent to Cache Service
+[2026-08-01T11:35:05.356003Z] [info] Download of opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G.qcow2 processed:
+[info] [#890318] Cache size of "/var/lib/openqa/cache" is 398 GiB, with limit 400 GiB
+[info] [#890318] Downloading "opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G.qcow2" from "https://openqa.opensuse.org/tests/6137466/asset/hdd/opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G.qcow2"
+[info] [#890318] Content of "/var/lib/openqa/cache/openqa.opensuse.org/opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G.qcow2" has not changed, updating last use
+
+[2026-08-01T11:35:05.357657Z] [debug] Found ISO, caching agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso
+[2026-08-01T11:35:05.360686Z] [info] Downloading agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso, request #890320 sent to Cache Service
+[2026-08-01T11:35:15.480962Z] [info] Download of agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso processed:
+[info] [#890320] Cache size of "/var/lib/openqa/cache" is 398 GiB, with limit 400 GiB
+[info] [#890320] Downloading "agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso" from "https://openqa.opensuse.org/tests/6137466/asset/iso/agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso"
+[info] [#890320] Content of "/var/lib/openqa/cache/openqa.opensuse.org/agama-installer.x86_64-23.0.0-openSUSE-Snapshot20260731.iso" has not changed, updating last use
+
+[2026-08-01T11:35:15.482743Z] [debug] Found UEFI_PFLASH_VARS, caching opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G-uefi-vars.qcow2
+[2026-08-01T11:35:15.484980Z] [info] Downloading opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G-uefi-vars.qcow2, request #890322 sent to Cache Service
+[2026-08-01T11:35:20.561004Z] [info] Download of opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G-uefi-vars.qcow2 processed:
+[info] [#890322] Cache size of "/var/lib/openqa/cache" is 398 GiB, with limit 400 GiB
+[info] [#890322] Downloading "opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G-uefi-vars.qcow2" from "https://openqa.opensuse.org/tests/6137466/asset/hdd/opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G-uefi-vars.qcow2"
+[info] [#890322] Content of "/var/lib/openqa/cache/openqa.opensuse.org/opensuse-Tumbleweed-x86_64-20260731-textmode-agama@uefi-3G-uefi-vars.qcow2" has not changed, updating last use
+
+[2026-08-01T11:35:20.563322Z] [info] Rsync from 'rsync://openqa.opensuse.org/tests' to '/var/lib/openqa/cache/openqa.opensuse.org', request #890323 sent to Cache Service
+[2026-08-01T11:35:25.633

@@ -14,11 +14,11 @@ jobs:
           - ubuntu-latest
           - macos-latest
         emacs_version:
-          - '27.1'
-          - '27.2'
+          # 29.1 is skipped: package--reload-previously-loaded is broken there,
+          # so upgrading the built-in seq (pulled in by transient) dies with
+          # "Cannot open load file: seq-25". Fixed upstream in 29.2.
           - '28.1'
           - '28.2'
-          - '29.1'
           - '29.2'
           - 'snapshot'
     steps:
@@ -26,7 +26,13 @@ jobs:
       - uses: purcell/setup-emacs@master
         with:
           version: ${{ matrix.emacs_version }}
-      - uses: conao3/setup-keg@master
+      # conao3/setup-keg is a node12 action; node12 is gone from the runners
+      # and has no arm64 macOS build, so it dies with spawn ENOEXEC. Install
+      # Keg from upstream directly instead.
+      - name: Install Keg
+        run: |
+          git clone --depth 1 https://github.com/conao3/keg.el.git "$HOME/keg"
+          echo "$HOME/keg/bin" >> "$GITHUB_PATH"
 
       - run: keg install
       - run: keg run test-all
@@ -41,6 +47,9 @@ jobs:
       - uses: actions/checkout@v1
       - uses: purcell/setup-emacs@master
         with:
-          version: '27.2'
-      - uses: conao3/setup-keg@master
+          version: '28.1'
+      - name: Install Keg
+        run: |
+          git clone --depth 1 https://github.com/conao3/keg.el.git "$HOME/keg"
+          echo "$HOME/keg/bin" >> "$GITHUB_PATH"
       - run: keg lint
